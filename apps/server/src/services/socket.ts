@@ -1,19 +1,22 @@
 import { Server, Socket } from "socket.io";
 import Redis from 'ioredis';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const pub = new Redis(
   {
-    host: 'redis-1a3fd6ad-tarikkhan10178-e126.a.aivencloud.com',
-    port: 23288,
-    username: 'default',
-    password: 'AVNS_cdHU2zJt5H4BlYfTxGO'
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT, 10) : undefined,
+    username: process.env.REDIS_USERNAME,
+    password: process.env.REDIS_PASSWORD,
   }
 );
 const sub = new Redis({
-  host: 'redis-1a3fd6ad-tarikkhan10178-e126.a.aivencloud.com',
-  port: 23288,
-  username: 'default',
-  password: 'AVNS_cdHU2zJt5H4BlYfTxGO'
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT, 10) : undefined,
+  username: process.env.REDIS_USERNAME,
+  password: process.env.REDIS_PASSWORD,
 });
 
 class SocketService {
